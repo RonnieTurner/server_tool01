@@ -4,7 +4,7 @@ api_user_name = os.environ['API_USER_NAME']
 api_user_pass = os.environ['API_USER_PASS']
 
 def rec_data():
-    auth = base64.b64encode(f"{api_user_name}":f"{api_user_pass}".encode())
+    auth = base64.b64encode(f"{api_user_name}:{api_user_pass}".encode())
     headers = {"Authorization": "Basic " + auth.decode(),
                 "Content-Type": "application/json",
                }
@@ -15,11 +15,12 @@ def rec_data():
 
 
 def list_servers(server_info):
-    server_info = server_info
-    my_server_list = server_info['servers']['state']
+    server_info = server_info['servers']
+    #pprint.pprint(server_info)
+    my_server_list = server_info['server']
     #  pprint.pprint(my_server_list)
-    for h in my_server_list:
-        print(h['hostname'])
+    #for h in my_server_list:
+     #   print(h['hostname'])
     #  pprint.pprint(r_obj)
     for l in my_server_list:
         if l['license'] == 0:
